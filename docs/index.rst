@@ -19,5 +19,6 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-Hello world
-===========
+Digital Manor
+=============
+Welcome do the Digital Manor project
