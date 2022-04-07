@@ -1,0 +1,117 @@
+# -----------------------------------------------------------------
+# HOUSE STATES
+#  - Morning
+#  - Daytime
+#  - Dusk
+#  - Evening
+#  - Bedtime
+#  - Night
+#  - Nightpath (not automated here)
+#------------------------------------------------------------------
+
+# -----------------------------------------------------------------
+# Morning
+# at sunrise, or at 6:00am, whichever is earlier
+#------------------------------------------------------------------
+- alias: house-state-morning
+  trigger:
+    - platform: sun
+      event: sunrise
+    - platform: time
+      at: 06:00
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Morning') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Morning
+      service: input_select.select_option
+#------------------------------------------------------------------
+# Daytime
+# Should this be archored to something else?
+#------------------------------------------------------------------
+- alias: house-state-daytime
+  trigger:
+    - at: 08:30
+      platform: time
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Daytime') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Daytime
+      service: input_select.select_option
+#------------------------------------------------------------------
+# Dusk
+#------------------------------------------------------------------
+- alias: house-state-dusk
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-01:00:00"
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Dusk') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Dusk
+      service: input_select.select_option
+#------------------------------------------------------------------
+# Evening
+# This lead time is different in winter / summer. Can it be slide with season?
+#------------------------------------------------------------------
+- alias: house-state-evening
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:30:00"
+
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Evening') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Evening
+      service: input_select.select_option
+#------------------------------------------------------------------
+# Bedtime
+# Fixed time, or by request
+# TODO: at a random element +/- 0-10 minutes?
+#------------------------------------------------------------------
+- alias: house-state-bedtime
+  trigger:
+    - at: "22:30"
+      platform: time
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Bedtime') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Bedtime
+      service: input_select.select_option
+#------------------------------------------------------------------
+# Nighttime
+# Fixed time, or by request
+#------------------------------------------------------------------
+- alias: house-state-night
+  trigger:
+    - at: "23:30"
+      platform: time
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Night') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Night
+      service: input_select.select_option

@@ -1,0 +1,36 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# ==================================================
+# Automations
+#   Automations are a list (not a dictionary)
+#   HA IU based automations go in automations.yaml
+#   Custom automations go in automtions/ direcory
+# --------------------------------------------------
+automation: !include automations.yaml 
+automation user: !include_dir_merge_list automations/ # my yaml automations here
+
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# ==================================================
+# Input Selects - As a dictonary (not as a list)
+# --------------------------------------------------
+input_select: !include_dir_merge_named input_select/
+
+# ==================================================
+# Input Booleans -- set up as a dictionary, not a list
+# --------------------------------------------------
+input_boolean: !include_dir_merge_named input_booleans/
+
+# ==================================================
+# Timers
+# --------------------------------------------------
+timer: !include_dir_merge_named timers/
+
+group: !include groups.yaml

@@ -1,0 +1,10 @@
+# -------------------------------------------------------
+# Input select
+# -------------------------------------------------------
+# House Automation Modes
+house_auto_modes:
+  name: House Auto Modes
+  options:
+    - "Auto"
+    - "Entertaining"
+    - "Manual"

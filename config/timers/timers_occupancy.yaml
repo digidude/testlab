@@ -1,0 +1,42 @@
+# Motion Timers MUST match the first word of the friendly name of the motion sensor
+#   It strips off the first word, lowercase it, and appends "_motion_timer"
+#   entity_id: binary_sensor.motion_sensor_1
+#   Friendly names:
+#      Kitchen Motion Sensor  --> kitchen_motion_timer
+# If there is more than one sensor for the same area
+#      Bedroom Motion Sensor --> bedroom_motion_timer
+#      Bedroom Hallway Motion Sensor --> bedroom_motion_timer
+bathroom_motion_timer:
+  name: Bathroom Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer
+
+bedroom_motion_timer:
+  name: Bedroom Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer
+
+# bedroom_hallway_motion_timer:
+#   name: Hallway Motion Timer
+#   duration: "00:05:00"
+#   icon: mdi:timer
+
+diningroom_motion_timer:
+  name: Dining Room Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer
+
+entryway_motion_timer:
+  name: Entryway Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer
+
+kitchen_motion_timer:
+  name: Kitchen Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer
+
+livingroom_motion_timer:
+  name: livingroom Motion Timer
+  duration: "00:05:00"
+  icon: mdi:timer

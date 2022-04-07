@@ -1,0 +1,64 @@
+# -------------------------------------------------------------------
+# occupancy_reset_timer.yaml
+# Reset occupancy flag if occupancy timer expires
+#-------------------------------------------------------------------
+- alias: room-unoccupied-timer
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id:
+        - timer.bathroom_motion_timer
+        - timer.bedroom_motion_timer
+        - timer.diningroom_motion_timer
+        - timer.entryway_motion_timer
+        - timer.kitchen_motion_timer
+        - timer.livingroom_motion_timer
+      to: "idle"
+    # - platform: state
+    #   entity_id:
+    #   - binary_sensor.bathroom_motion_1_occupancy
+    #   - binary_sensor.bedroom_motion_occupancy
+    #   - binary_sensor.entryway_motion_occupancy
+    #   - binary_sensor.kitchen_motion_occupancy
+    #   to: "off"
+
+  # Check if both the room occupancy timer is off and all sensors in the room are off.
+  #    This is like a "debounce" -- catching the state when the timer
+  #    clicks off right as the sensor has come back on. Happens more when 
+  #    timer is shorter than sensor reset.
+
+  condition:
+    condition: and
+    conditions:
+    # Is the room's occupancy timer off ('idle')
+    - condition: template
+      value_template: "{{ is_state('timer.' ~ area_id(trigger.entity_id) ~ '_motion_timer', 'idle') }}"
+    # is the sensor in the room (or all sensor in room group) are clear ('off')
+    - condition: template
+      value_template: "{{ is_state('group.' ~ area_id(trigger.entity_id) ~ '_motion_sensors', 'off') }}"
+
+  # Turn off the room occupancy flag
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.{{ area_id(trigger.entity_id) }}_occupancy
+    # DEBUG -- Show me the values of the trigger.to_state
+          # {% if trigger.entity_id.split('.')[0] = "timer" -%}
+          #   Occupancy Timer Reset -}}
+          # {%- else -%}
+          #   Occupancy Sensor Reset -}}
+          # {%- endif %}
+
+    # - service: persistent_notification.create
+    #   data_template:
+    #     title: >
+    #       Occupancy Time Reset
+    #     message: |
+    #       Trigger Platform Type: {{ trigger.platform }} {{'\n'-}}
+    #       Triggering Entity ID: {{ trigger.entity_id }} {{'\n'-}}
+    #       Checking: {{ trigger.to_state.attributes.friendly_name}} {{'\n'-}}
+    #       Area: {{ area_id(trigger.entity_id) }} {{'\n'-}}
+    #       Occupancy Timer: timer.{{ trigger.entity_id.split('.')[1].split('_')[0] }}_motion_timer {{'\n'-}} 
+    #       Occupancy Flag: input_boolean.{{ trigger.entity_id.split('.')[1].split('_')[0] }}_motion_occupancy
+
+

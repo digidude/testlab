@@ -1,0 +1,35 @@
+# Motion triggered lighting
+bathroom_motion_lighting:
+  name: Bathroom Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+bedroom_motion_lighting:
+  name: Bedroom Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+diningroom_motion_lighting:
+  name: Dining Room Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+guestbathroom_motion_lighting:
+  name: Guest Bathroom Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+guestroom_motion_lighting:
+  name: Guest Room Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+kitchen_motion_lighting:
+  name: Kitchen Motion Lighting
+  initial: on
+  icon: mdi:light-switch
+
+livingroom_motion_lighting:
+  name: Livingroom Motion Lighting
+  initial: on
+  icon: mdi:light-switch

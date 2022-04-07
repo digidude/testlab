@@ -1,0 +1,10 @@
+# -------------------------------------------------------
+# Input select
+# -------------------------------------------------------
+# Alarm Panel Modes
+alarm_modes:
+  name: "Alarm Modes"
+  options:
+    - Home
+    - Away
+    - Vacation

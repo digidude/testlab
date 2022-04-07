@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------
+# HOUSE STATES
+#  - Morning
+#  - Daytime
+#  - Dusk
+#  - Evening
+#  - Bedtime
+#  - Night
+#  - Nightpath (not automated here)
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# Dusk
+#------------------------------------------------------------------
+- alias: house-state-dusk
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-01:00:00"
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Dusk') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Dusk
+      service: input_select.select_option

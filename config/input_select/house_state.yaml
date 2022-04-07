@@ -1,0 +1,13 @@
+# -------------------------------------------------------
+# Input select
+# -------------------------------------------------------
+house_state:
+  name: House States
+  options:
+    - "Morning"
+    - "Daytime"
+    - "Dusk"
+    - "Evening"
+    - "Bedtime"
+    - "Night"
+    - "Nightpath"

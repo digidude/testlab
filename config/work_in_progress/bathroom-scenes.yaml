@@ -1,0 +1,127 @@
+- id: '1605527455749'
+  name: bathroom-morning
+  entities:
+    light.bathroom_group:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      - xy
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 175
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Bathroom
+      supported_features: 44
+      state: 'on'
+# ----------------------------------------
+- id: '1606781977232'
+  name: bathroom-bedtime
+  entities:
+    light.bathroom_vanity_group:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      - xy
+      color_mode: color_temp
+      brightness: 128
+      color_temp: 460
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Bathroom Vanity Group
+      supported_features: 44
+      state: 'on'
+    light.bathroom_kickstrip:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      - xy
+      color_mode: color_temp
+      brightness: 128
+      color_temp: 451
+      is_deconz_group: false
+      friendly_name: Bathroom Kickstrip
+      supported_features: 44
+      state: 'on'
+# ----------------------------------------
+- id: '1606782134910'
+  name: bathroom-daytime
+  entities:
+    light.bathroom_vanity_group:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      color_mode: color_temp
+      brightness: 230
+      color_temp: 370
+      is_deconz_group: true
+      all_on: true
+      friendly_name: Bathroom Vanity Group
+      supported_features: 63
+      state: 'on'
+    light.bathroom_kickstrip:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      color_mode: color_temp
+      brightness: 230
+      color_temp: 370
+      is_deconz_group: false
+      friendly_name: Bathroom Kickstrip
+      supported_features: 63
+      state: 'on'
+# ----------------------------------------
+- id: '1606782183916'
+  name: bathroom-nightpath
+  entities:
+    light.bathroom_vanity_group:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      is_deconz_group: true
+      all_on: false
+      friendly_name: Bathroom Vanity Group
+      supported_features: 63
+      state: 'off'
+    light.bathroom_kickstrip:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      brightness: 51
+      hs_color:
+      - 10.672
+      - 99.216
+      rgb_color:
+      - 255
+      - 46
+      - 1
+      xy_color:
+      - 0.687
+      - 0.31
+      is_deconz_group: false
+      friendly_name: Bathroom Kickstrip
+      supported_features: 63
+      state: 'on'
+# ----------------------------------------

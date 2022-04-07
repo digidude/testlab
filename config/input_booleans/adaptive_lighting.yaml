@@ -1,0 +1,21 @@
+# Adaptive Light Temperature / Color
+circadian_lighing:
+  name: Automatically set lighting Temperatures
+  initial: on
+  icon: mdi:light-switch
+
+# Night Path
+night_path_lighting:
+  name: Night Path
+  initial: on
+  icon: mdi:light-switch
+
+# Darkness Trigger
+# TODO: look for a good way to trip the ambient light level based on lux.
+# Arduio with sensor? Outdoor
+# Indoor sensors will be effected by indoor lights, and not the ambient
+# outdoor readings
+ambient_darkness_alert:
+  name: Daytime Darkness
+  initial: off
+  icon: mdi:light-switch

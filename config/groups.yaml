@@ -1,0 +1,56 @@
+# ------------------------------------------------------------
+# motion sensor groups
+# <area> + "motion" + "sensors"
+# note: these are all PLURAL to show they are groups
+# ------------------------------------------------------------
+all_motion_sensors:
+  name: "All Motion Sensors"
+  entities:
+    - binary_sensor.bedroom_motion_occupancy
+    - binary_sensor.bedroom_hallway_motion_occupancy
+    - binary_sensor.bathroom_motion_1_occupancy
+    - binary_sensor.entryway_motion_occupancy
+    - binary_sensor.kitchen_motion_occupancy
+    - binary_sensor.livingroom_motion_occupancy
+# ------------------------------------------------------------
+# Room Groups
+# ------------------------------------------------------------
+bathroom_motion_sensors:
+  name: Bathroom Motion Sensors
+  entities:
+    - binary_sensor.bathroom_motion_1_occupancy
+
+bedroom_motion_sensors:
+  name: "Bedroom Motion Sensors"
+  entities:
+    - binary_sensor.bedroom_motion_occupancy
+    - binary_sensor.bedroom_hallway_motion_occupancy
+
+kitchen_motion_sensors:
+  name: Kitchen Motion Sensors
+  entities:
+    - binary_sensor.kitchen_motion_occupancy
+
+entryway_motion_sensors:
+  name: Entryway Motion Sensors
+  entities:
+    - binary_sensor.entryway_motion_occupancy
+
+livingroom_motion_sensors:
+  name: Living Motion Sensors
+  entities:
+    - binary_sensor.livingroom_motion_occupancy
+
+# ------------------------------------------------------------
+# timer groups 
+# note: these are all plural to show they are groups
+# ------------------------------------------------------------
+all_motion_timers:
+  name: "All Motion Timers"
+  entities:
+    - timer.bathroom_motion_timer
+    - timer.bedroom_motion_timer
+    - timer.diningroom_motion_timer
+    - timer.entryway_motion_timer
+    - timer.kitchen_motion_timer
+    - timer.livingroom_motion_timer

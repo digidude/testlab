@@ -1,0 +1,29 @@
+# -----------------------------------------------------------------
+# HOUSE STATES
+#  - Morning
+#  - Daytime
+#  - Dusk
+#  - Evening
+#  - Bedtime
+#  - Night
+#  - Nightpath (not automated here)
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# Bedtime
+# Fixed time, or by request
+# TODO: add a random element +/- 0-10 minutes?
+#------------------------------------------------------------------
+- alias: house-state-bedtime
+  trigger:
+    - at: "22:00"
+      platform: time
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Bedtime') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Bedtime
+      service: input_select.select_option

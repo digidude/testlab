@@ -1,0 +1,53 @@
+# -------------------------------------------------------------------
+# Occupancy Triggers and timings
+# Sensors should have friendly name in the form:
+#   <roomname> + <optional qualifier> + "Motion Sensor"
+#     e.g. Bedroom Motion Sensor
+#     e.g. Bedroom Hallway Motion Sensor
+# Timers declared in config in the form:
+#   <roomname>_motion_timer
+#   e.g. bedroom_motion_timer
+# -------------------------------------------------------------------
+- alias: room-unoccupied-motion
+  initial_state: true
+  trigger:
+    # occupancy motion sensors
+    - entity_id:
+      - binary_sensor.bathroom_motion_1_occupancy
+      - binary_sensor.bedroom_motion_occupancy
+      - binary_sensor.bedroom_hallway_motion_occupancy
+      - binary_sensor.entryway_motion_occupancy
+      - binary_sensor.kitchen_motion_occupancy
+      - binary_sensor.livingroom_motion_occupancy
+      platform: state
+      to: "off"
+
+  condition:
+    condition: and
+    conditions:
+    # 1: Is the room's occupancy timer off ('idle')
+    - condition: template
+      value_template: "{{ is_state('timer.' ~ area_id(trigger.entity_id) ~ '_motion_timer', 'idle') }}"
+    # 2: Check that all sensors in the room's group are clear ('off')
+    - condition: template
+      # value_template: "{{ is_state('group.' ~ trigger.entity_id.split('.')[1].split('_')[0] ~ '_motion_sensors', 'off') }}"
+      value_template: "{{ is_state('group.' ~ area_id(trigger.entity_id) ~ '_motion_sensors', 'off') }}"
+
+  # Turn off the occupancy flag
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.{{ area_id(trigger.entity_id) }}_occupancy
+    # # DEBUG -- Show me the values of the trigger.to_state
+    # - service: persistent_notification.create
+    #   # # Occupancy Reset for {{ trigger.to_state.attributes.friendly_name.split(' ', 1)[0] -}}
+    #   data_template:
+    #     title: >
+    #       Occupancy Motion Reset
+    #     message: |
+    #       Trigger Platform Type: {{ trigger.platform }} {{'\n'-}}
+    #       Triggering Entity ID: {{ trigger.entity_id }} {{'\n'-}}
+    #       Checking: {{ trigger.to_state.attributes.friendly_name}} {{'\n'-}}
+    #       Area: {{ area_id(trigger.entity_id) }} {{'\n'-}}
+    #       Occupancy Timer: timer.{{ trigger.entity_id.split('.')[1].split('_')[0] }}_motion_timer {{'\n'-}}
+    #       Occupancy Flag: input_boolean.{{ trigger.entity_id.split('.')[1].split('_')[0] }}_motion_occupancy

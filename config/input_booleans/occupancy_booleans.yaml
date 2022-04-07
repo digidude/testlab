@@ -1,0 +1,47 @@
+# -----------------------------------------------------------------
+# Occupancy - Input Booleans
+# -----------------------------------------------------------------
+bathroom_occupancy:
+  name: Bathroom Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+bedroom_occupancy:
+  name: Bedroom Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+diningroom_occupancy:
+  name: Dining Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+closet_occupancy:
+  name: Closet Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+entryway_occupancy:
+  name: Entryway Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+guestroom_occupancy:
+  name: Guest Room Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+guestbathroom_occupancy:
+  name: Guest Bathroom Room Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+kitchen_occupancy:
+  name: Kitchen Occupancy
+  initial: off
+  icon: mdi:light-switch
+
+livingroom_occupancy:
+  name: Livingroom Occupancy
+  icon: mdi:light-switch
+  initial: off

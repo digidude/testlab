@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------
+# HOUSE STATES
+#  - Morning
+#  - Daytime
+#  - Dusk
+#  - Evening
+#  - Bedtime
+#  - Night
+#  - Nightpath (not automated here)
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# Daytime
+# Should this be archored to something else?
+#------------------------------------------------------------------
+- alias: house-state-daytime
+  trigger:
+    - at: 08:30
+      platform: time
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Daytime') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Daytime
+      service: input_select.select_option

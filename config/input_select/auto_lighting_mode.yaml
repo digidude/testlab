@@ -1,0 +1,10 @@
+# -------------------------------------------------------
+# Input select
+# -------------------------------------------------------
+# Lighting Automation Modes
+auto_lighting_mode:
+  name: Auto Lighting Modes
+  options:
+    - "Auto"
+    - "Semi-Auto"
+    - "Manual"

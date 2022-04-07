@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------
+# HOUSE STATES
+#  - Morning
+#  - Daytime
+#  - Dusk
+#  - Evening
+#  - Bedtime
+#  - Night
+#  - Nightpath (not automated here)
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# Evening
+# This lead time is different in winter / summer. Can it be slid with  season?
+#------------------------------------------------------------------
+- alias: house-state-evening
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:30:00"
+
+  condition:
+    # unless it's already in this state
+    condition: template
+    value_template: "{{ not is_state('input_select.house_state','Evening') }}"
+  action:
+    - data:
+        entity_id: input_select.house_state
+        option: Evening
+      service: input_select.select_option
